@@ -16,13 +16,12 @@ const sendContactEmail = async (formData) => {
   `;
 
   const info = await transporter.sendMail({
-    from: process.env.SMTP_USER,        // aapka Gmail
-    to: "ahmadsaleem19950@gmail.com",  // aapka receive email
+    from: process.env.SMTP_USER,
+    to: "ahmadsaleem19950@gmail.com",
     subject: `New Project Inquiry from ${name}`,
     html: emailContent,
   });
 
-  console.log("✅ Contact email sent:", info.messageId);
   return info;
 };
 

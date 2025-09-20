@@ -3,13 +3,14 @@ const { sendContactEmail } = require("../services/contactService.js");
 
 const router = express.Router();
 
-router.post("/contact", async (req, res) => {
+// POST /api/contact
+router.post("/", async (req, res) => {
   try {
     const info = await sendContactEmail(req.body);
-    res.json({ success: true, messageId: info.messageId });
-  } catch (err) {
-    console.error("❌ Error sending contact email:", err);
-    res.status(500).json({ success: false, error: err.message });
+    res.status(200).json({ success: true, messageId: info.messageId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 
